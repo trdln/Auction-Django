@@ -3,7 +3,7 @@
     <v-form
       v-if="isAuth"
       ref="vForm"
-      class="w-[70%] lg:w-[30vw] flex flex-col gap-4 p-4 border-[1px] rounded-lg"
+      class="w-[70%] lg:w-[30vw] bg-white flex flex-col gap-4 p-4 border-[1px] rounded-lg"
       @submit="submitForm"
     >
       <h1 class="self-center text-xl">Страница входа</h1>
@@ -27,7 +27,7 @@
     <v-form
       v-else
       ref="vForm"
-      class="w-[70%] lg:w-[30vw] flex flex-col gap-4 p-4 border-[1px] rounded-lg"
+      class="w-[70%] lg:w-[30vw] bg-white flex flex-col gap-4 p-4 border-[1px] rounded-lg"
       @submit="submitForm"
     >
       <h1 class="self-center text-xl">Страница регистрации</h1>

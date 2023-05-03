@@ -36,9 +36,9 @@ export default {
       if (!store.items.length) {
         await store.getItems(true);
       }
-      // setInterval(async () => {
-      //   await store.getItems(false);
-      // }, 5000);
+      setInterval(async () => {
+        await store.getItems(false);
+      }, 5000);
     };
 
     onInit();

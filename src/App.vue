@@ -1,6 +1,11 @@
 <template>
   <v-app>
     <Loading v-if="$store.isLoading" />
+    <!-- <v-text-field
+      variant="solo"
+      v-model="$store.api.axios.defaults.baseURL"
+      hide-details
+    ></v-text-field> -->
     <router-view v-slot="{ Component }">
       <transition
         name="fade"

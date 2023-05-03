@@ -5,6 +5,10 @@ const POST = "post";
 const PUT = "put";
 
 class ApiClass {
+  constructor() {
+    this.axios = axios;
+  }
+
   async axiosCall(config) {
     const { data } = await axios.request(config);
     return data;

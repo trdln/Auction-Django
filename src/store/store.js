@@ -101,7 +101,7 @@ export const useStore = defineStore("store", {
         this.isLoading = false;
       }
     },
-    async toSale(item, price) {
+    async toSale(item, price, lot = null) {
       if (!item) return null;
       try {
         this.isLoading = true;
@@ -112,8 +112,8 @@ export const useStore = defineStore("store", {
           };
           await this.api.addSaleItem(newSaleData);
         }
-        if (item.status === "ON_SALE") {
-          await this.api.editSaleItem(item.id, String(price));
+        if (item.status === "ON_SALE" && !!lot) {
+          await this.api.editSaleItem(lot.id, String(price));
         }
 
         await Promise.allSettled([

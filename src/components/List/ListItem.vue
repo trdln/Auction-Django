@@ -24,12 +24,26 @@
           >
         </div>
         <div
+          v-if="initial && 'last_bidder' in initial && initial.last_bidder"
+          class="text-subtitle-2 w-fit border-[1px] p-1 rounded bg-white border-[#c084fc]"
+        >
+          <span
+            >Последний:
+            {{ `${initial.last_bidder.first_name} ${initial.last_bidder.last_name}` }}</span
+          >
+        </div>
+        <div
           v-if="value.initial_price"
           class="text-subtitle-2 w-fit border-[1px] p-1 rounded bg-white border-[#fde047]"
         >
           Первоначальная: {{ `${value.initial_price} ₸‎` }}
         </div>
-        <div>{{ value.status }}</div>
+        <div
+          v-if="initial && 'current_price' in initial && initial.current_price"
+          class="text-subtitle-2 w-fit border-[1px] p-1 rounded bg-white border-[#fda4af]"
+        >
+          Последняя ставка: {{ `${initial.current_price} ₸‎` }}
+        </div>
       </div>
 
       <v-form
@@ -96,6 +110,10 @@ export default {
       type: Object,
       default: null,
     },
+    initial: {
+      type: Object,
+      default: null,
+    },
   },
   setup(props) {
     const store = useStore();
@@ -105,7 +123,7 @@ export default {
     const makeFirst = async () => {
       await vForm.value.validate().then(async (v) => {
         if (v.valid) {
-          await store.toSale(props.value, bid.value);
+          await store.toSale(props.value, bid.value, props.initial);
         }
       });
     };

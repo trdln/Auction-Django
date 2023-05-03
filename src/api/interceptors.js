@@ -1,9 +1,9 @@
 export default function (axios) {
   axios.interceptors.request.use(
     (request) => {
-      const token = localStorage.getItem("access") || "null";
+      const token = localStorage.getItem("access") || null;
       if (token) {
-        request.headers.Authorization = `${token}`;
+        request.headers.Authorization = `Bearer ${token}`;
       }
       return request;
     },
