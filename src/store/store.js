@@ -126,6 +126,22 @@ export const useStore = defineStore("store", {
         this.isLoading = false;
       }
     },
+    async addNewItem(item) {
+      if (!item) return;
+      this.isLoading = true;
+      try {
+        await this.api.addItem(item);
+        await Promise.allSettled([
+          this.getItems(false),
+          this.getSaleItems(false),
+        ]);
+        return true;
+      } catch (err) {
+        return ErrorHandler(err);
+      } finally {
+        this.isLoading = false;
+      }
+    },
   },
 });
 
